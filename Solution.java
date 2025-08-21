@@ -5,6 +5,9 @@
  */
 
 // @lc code=start
+
+import java.util.HashSet;
+
 /**
  * Definition for singly-linked list.
  * class ListNode {
@@ -18,18 +21,33 @@
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        ListNode slowPtr = head;
-        ListNode fastPtr = head;
-        while(slowPtr != null && fastPtr != null && fastPtr.next != null)
+        // ListNode slowPtr = head;
+        // ListNode fastPtr = head;
+        // while(slowPtr != null && fastPtr != null && fastPtr.next != null)
+        // {
+        //     slowPtr = slowPtr.next;
+        //     fastPtr = fastPtr.next.next;
+        //     if(slowPtr == fastPtr)
+        //     {
+        //         return true;
+        //     }
+        // }
+
+        // return false;
+
+        ListNode curr = head;
+        HashSet<ListNode> seenNodes = new HashSet<>();
+        while(curr != null)
         {
-            slowPtr = slowPtr.next;
-            fastPtr = fastPtr.next.next;
-            if(slowPtr == fastPtr)
-            {
+            if(!seenNodes.add(curr)){
                 return true;
             }
+            else
+            {
+                seenNodes.add(curr);
+            }
+            curr = curr.next;
         }
-
         return false;
     }
 }
